@@ -1,0 +1,59 @@
+import random
+from replit import clear
+from art import logo
+def deal_card():
+  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  return random.choice(cards)
+
+def calculate_score(cards):
+  if(sum(cards)==21 and len(cards)==2):
+    return 0
+  if(sum(cards)>21 and 11 in cards):
+    cards.remove(11)
+    cards.append(1)
+  return sum(cards)
+def compare(user_score,computer_score):
+  if(computer_score==user_score):
+    return print("its draw")
+  elif(computer_score==0):
+    return print("you losses.opponent wins")
+  elif(user_score==0):
+    return print("you wins")
+  elif(user_score>21):
+    return print("you loses")
+  elif(computer_score>21):
+    return print("you win")
+  elif(computer_score>user_score):
+    return print("you lose")
+  elif(user_score>computer_score):
+    return print("you win")
+    
+def game_code():
+  print(logo)
+  user_cards = []
+  computer_cards = []
+  game_end=False
+  for _ in range(2):
+    user_cards.append(deal_card())
+    computer_cards.append(deal_card())
+  while not game_end:
+    user_score=calculate_score(user_cards)
+    computer_score=calculate_score(computer_cards)
+    print(f"your score is {user_score}")
+    print(f"opponent score is {computer_score}")
+    if computer_score==0 or user_score==0 or user_score>21:
+      game_end=True
+    else:
+      user_in=input("Would you like to pick another card?")
+      if(user_in=="y"):
+        user_cards.append(deal_card())
+      else:
+        game_end=True
+  while computer_score!=0 and computer_score<17:
+    computer_cards.append(deal_card())
+    computer_score=calculate_score(computer_cards)
+  print(f"the opponent final score is {computer_score}")
+  compare(user_score,computer_score)
+while input(" welcome to the amazing game Blackjack..If you want to play just type Y otherwise N")=="y":
+  clear()
+  game_code()
