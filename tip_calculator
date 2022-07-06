@@ -1,0 +1,15 @@
+#If the bill was $150.00, split between 5 people, with 12% tip. 
+
+#Each person should pay (150.00 / 5) * 1.12 = 33.6
+#Format the result to 2 decimal places = 33.60
+
+#Tip: There are 2 ways to round a number. You might have to do some Googling to solve this.💪
+
+#Write your code below this line 👇
+bill=(int(input("welcome to the tip calculator!\n what was the total bill?\n")))
+tip_amount=(int(input("how much tip would you like to give? 10,12 or 15\n")))
+split=(int(input("how much people to split the bill?")))
+percentage=(tip_amount/100)
+total_bill=bill+percentage
+people=(bill/split)
+print(round(people))
