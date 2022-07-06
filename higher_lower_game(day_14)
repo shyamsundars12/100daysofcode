@@ -1,0 +1,61 @@
+#print the logo of the game!!
+
+#then randomly generate a two people info for comparison
+
+#ask the user to guess the followers
+
+#retrieve the followers data and compare it with the guess
+
+#change the b to a and generate new b and continue the process untill the user fail to guess the correct followers acccount by while loop
+from art import logo,vs
+import random
+from game_data import data
+from replit import clear
+
+
+def random_gen():
+  return (random.choice(data))
+
+  
+def aligning(user_a,user_b):
+  print("Compare A:",user_a["name"],",",user_a["description"],",","from",user_a["country"])
+  print(vs)
+  print("Against B:",user_b["name"],",",user_b["description"],",","from",user_b["country"])
+
+  
+def check_guess(choice,user_a_follow,user_b_follow):
+  if(user_a_follow>user_b_follow):
+    return choice=="A"
+  else:
+    return choice=="B"
+
+    
+def game_code():
+  print(logo)
+  score=0
+  is_continue=True
+  user_a=random_gen()
+  user_b=random_gen()
+  while is_continue:
+    user_a=user_b
+    user_b=random_gen()
+    aligning(user_a,user_b)
+    
+    choice=input("Make  a guess . .! A or B?  ").lower()
+    user_a_follow=user_a["follower_count"]
+    user_b_follow=user_b["follower_count"]
+    print(user_a_follow)
+    print(user_b_follow)
+    is_correct=check_guess(choice,user_a_follow,user_b_follow)
+    if is_correct:
+      score=score+1
+      clear()
+      print(f"your score is {score}")
+    else:
+      print(f"your answer is incorrect and score is {score}")
+      is_continue=False
+
+      
+game_code()
+  
+    
